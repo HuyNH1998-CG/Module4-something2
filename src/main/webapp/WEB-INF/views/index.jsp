@@ -23,4 +23,8 @@
     </c:forEach>
   </table>
   </body>
+  <form action="/search" method="post">
+    <input type="text" name="name" placeholder="input name here">
+    <button type="submit">Search</button>
+  </form>
 </html>

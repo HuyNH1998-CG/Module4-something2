@@ -42,4 +42,16 @@ public class MainController {
         studentManage.delete(index);
         return "redirect:/home";
     }
+    @RequestMapping("/search")
+    public String search(@RequestParam String name, Model model){
+        Student tosearch = null;
+        for(Student student : studentManage.list){
+            if (student.getName().equals(name)){
+                tosearch = student;
+                break;
+            }
+        }
+        model.addAttribute("student",tosearch);
+        return "/WEB-INF/views/viewsearch.jsp";
+    }
 }
