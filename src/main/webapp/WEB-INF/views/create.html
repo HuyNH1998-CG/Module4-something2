@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create</title>
+</head>
+<body>
+<form method="post" th:action="@{/create}">
+    <table>
+        <tr>
+            <td><input type="text" name="name" placeholder="Name"></td>
+        </tr>
+        <tr>
+            <td><input type="number" name="price" placeholder="Price" value="${product.price}"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="category">
+                    <option value="Fish">Fish</option>
+                    <option value="Fruit">Fruit</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Create</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/home">Back</a>
+</body>
+</html>

@@ -1,57 +1,57 @@
 package Controller;
 
-import Service.StudentManage;
+import Service.ProductManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import Model.Classroom;
-import Model.Student;
+import Model.Product;
 
 @Controller
 public class MainController {
-    StudentManage studentManage = new StudentManage();
+    ProductManager productManager = new ProductManager();
     @RequestMapping("/home")
     public String home(ModelMap model){
-        model.addAttribute("students",studentManage.list);
-        return "/WEB-INF/views/index.jsp";
+        model.addAttribute("products", productManager.list);
+        return "/index";
     }
     @GetMapping("/create")
     public String showCreate(ModelMap model){
-        model.addAttribute("classroom",studentManage.classrooms);
-        return "/WEB-INF/views/create.jsp";
+        model.addAttribute("category", productManager.categories);
+        return "/create";
     }
     @PostMapping("/create")
-    public String create(@ModelAttribute Student student){
-        studentManage.save(student);
+    public String create(@RequestParam String name, @RequestParam float price, @RequestParam String category){
+        Product product = new Product(name,price,category);
+        productManager.save(product);
         return "redirect:/home";
     }
-    @GetMapping("/edit")
-    public String showEdit(ModelMap model,@RequestParam int index){
-        model.addAttribute("student",studentManage.list.get(index));
-        model.addAttribute("classroom",studentManage.classrooms);
-        return "/WEB-INF/views/edit.jsp";
+    @GetMapping("/edit{index}")
+    public String showEdit(ModelMap model,@PathVariable int index){
+        model.addAttribute("product", productManager.list.get(index));
+        model.addAttribute("category", productManager.categories);
+        return "/edit";
     }
-    @PostMapping("/edit")
-    public String edit(@RequestParam int index, @ModelAttribute Student student){
-        studentManage.edit(student,index);
+    @PostMapping("/edit{index}")
+    public String edit(@PathVariable int index, @ModelAttribute Product product){
+        productManager.edit(product,index);
         return "redirect:/home";
     }
-    @RequestMapping("/delete")
-    public String delete(@RequestParam int index){
-        studentManage.delete(index);
+    @RequestMapping("/delete{index}")
+    public String delete(@PathVariable int index){
+        productManager.delete(index);
         return "redirect:/home";
     }
     @RequestMapping("/search")
     public String search(@RequestParam String name, Model model){
-        Student tosearch = null;
-        for(Student student : studentManage.list){
-            if (student.getName().equals(name)){
-                tosearch = student;
+        Product tosearch = null;
+        for(Product product : productManager.list){
+            if (product.getName().equals(name)){
+                tosearch = product;
                 break;
             }
         }
-        model.addAttribute("student",tosearch);
-        return "/WEB-INF/views/viewsearch.jsp";
+        model.addAttribute("product",tosearch);
+        return "/viewsearch";
     }
 }

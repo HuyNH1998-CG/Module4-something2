@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<a th:href="@{/create}">Create</a>
+<table>
+    <tr th:each="row,state : ${products}">
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getCategory}"></td>
+        <td>
+            <a th:href="@{/edit{index}(index=${state.index})}" >Edit</a>
+            <a th:href="@{/delete{index}(index=${state.index})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+<form action="#" th:action="@{/search}" method="post">
+    <input type="text" name="name" placeholder="input name here">
+    <button type="submit">Search</button>
+</form>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seach</title>
+</head>
+<body>
+<a href="/home">Home</a>
+<table>
+        <tr>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.category}"></td>
+        </tr>
+</table>
+</body>
+<form action="#" th:action="@{/search}" method="post">
+    <input type="text" name="name" placeholder="input name here">
+    <button type="submit">Search</button>
+</form>
+</html>
