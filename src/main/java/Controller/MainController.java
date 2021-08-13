@@ -7,6 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import Model.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class MainController {
     ProductManager productManager = new ProductManager();
@@ -17,12 +20,12 @@ public class MainController {
     }
     @GetMapping("/create")
     public String showCreate(ModelMap model){
+        model.addAttribute("product",new Product());
         model.addAttribute("category", productManager.categories);
         return "/create";
     }
     @PostMapping("/create")
-    public String create(@RequestParam String name, @RequestParam float price, @RequestParam String category){
-        Product product = new Product(name,price,category);
+    public String create(Product product){
         productManager.save(product);
         return "redirect:/home";
     }
@@ -33,7 +36,7 @@ public class MainController {
         return "/edit";
     }
     @PostMapping("/edit{index}")
-    public String edit(@PathVariable int index, @ModelAttribute Product product){
+    public String edit(@PathVariable int index, Product product){
         productManager.edit(product,index);
         return "redirect:/home";
     }
@@ -44,11 +47,10 @@ public class MainController {
     }
     @RequestMapping("/search")
     public String search(@RequestParam String name, Model model){
-        Product tosearch = null;
+        List<Product> tosearch = new ArrayList<>();
         for(Product product : productManager.list){
             if (product.getName().equals(name)){
-                tosearch = product;
-                break;
+                tosearch.add(product);
             }
         }
         model.addAttribute("product",tosearch);

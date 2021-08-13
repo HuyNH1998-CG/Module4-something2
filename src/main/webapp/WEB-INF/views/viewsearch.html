@@ -5,12 +5,17 @@
 </head>
 <body>
 <a href="/home">Home</a>
-<table>
-        <tr>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.category}"></td>
-        </tr>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+    </tr>
+    <tr th:each="row,state : ${product}">
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getCategory}"></td>
+    </tr>
 </table>
 </body>
 <form action="#" th:action="@{/search}" method="post">

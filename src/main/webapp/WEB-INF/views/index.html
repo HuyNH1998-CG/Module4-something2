@@ -5,7 +5,13 @@
 </head>
 <body>
 <a th:href="@{/create}">Create</a>
-<table>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Action</th>
+    </tr>
     <tr th:each="row,state : ${products}">
         <td th:text="${row.getName()}"></td>
         <td th:text="${row.getPrice()}"></td>

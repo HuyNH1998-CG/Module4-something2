@@ -4,20 +4,19 @@
     <title>Create</title>
 </head>
 <body>
-<form method="post">
-    <table>
+<form method="post"th:object="${product}" novalidate="novalidate">
+    <table border="1">
         <tr>
-            <td><input type="text" name="name" placeholder="Name" th:value="${product.name}"></td>
+            <td><input type="text" th:field="*{name}" placeholder="Name" th:value="${product.name}"></td>
         </tr>
         <tr>
-            <td><input type="number" name="price" placeholder="Price" th:value="${product.price}"></td>
+            <td><input type="number" th:field="*{price}" placeholder="Price" th:value="${product.price}"></td>
         </tr>
         <tr>
             <td>
-                <select name="category">
+                <select name="category" th:field="*{category}">
                     <option th:value="${product.category}" th:text="${product.category}" hidden></option>
-                    <option value="Fish">Fish</option>
-                    <option value="Fruit">Fruit</option>
+                    <option th:each="category : ${category}" th:value="${category.getCategory()}" th:utext="${category.getCategory()}"></option>
                 </select>
             </td>
         </tr>
