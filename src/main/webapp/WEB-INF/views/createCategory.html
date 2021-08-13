@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <title>Create Category</title>
+</head>
+<body>
+<form method="post" th:object="${category}" novalidate="novalidate">
+    <table border="1" id="products">
+        <tr><th colspan="4">Category Creation Form</th></tr>
+        <tr>
+            <td><input type="text" th:field="*{category}" placeholder="Category Name"></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Create</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/home">Back</a>
+</body>
+</html>

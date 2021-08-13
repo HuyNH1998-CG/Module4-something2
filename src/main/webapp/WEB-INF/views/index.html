@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <title>Home</title>
 </head>
 <body>
-<a th:href="@{/create}">Create</a>
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="row,state : ${products}">
-        <td th:text="${row.getName()}"></td>
-        <td th:text="${row.getPrice()}"></td>
-        <td th:text="${row.getCategory}"></td>
-        <td>
-            <a th:href="@{/edit{index}(index=${state.index})}" >Edit</a>
-            <a th:href="@{/delete{index}(index=${state.index})}">Delete</a>
-        </td>
-    </tr>
-</table>
+<div class="container">
+    <a th:href="@{/create}">Create</a>
+    <a th:href="@{/createCategory}">CreateCategory</a>
+    <table border="1" id="products">
+        <tr>
+            <th colspan="6" style="background-color: #ffff40; color: black">ProductList</th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="row,state : ${products}">
+            <td th:text="${row.getName()}"></td>
+            <td th:text="${row.getPrice()}"></td>
+            <td th:text="${row.desc}"></td>
+            <td><img src="" th:src="${row.image}" alt="" width="200px" height="100px"></td>
+            <td th:text="${row.getCategory}"></td>
+            <td>
+                <a th:href="@{/edit{index}(index=${state.index})}">Edit</a>
+                <a th:href="@{/delete{index}(index=${state.index})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table border="1" id="category">
+        <tr>
+            <th colspan="4" style="background-color: #ffff40; color: black">CategoryList</th>
+        </tr>
+        <tr>
+            <th colspan="3">Name</th>
+            <th >Action</th>
+        </tr>
+        <tr th:each="cat,state : ${category}">
+            <td th:text="${cat.category}" colspan="3"></td>
+            <td >
+                <a th:href="@{/editCat{index}(index=${state.index})}">Edit</a>
+                <a th:href="@{/deleteCat{index}(index=${state.index})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <form action="#" th:action="@{/search}" method="post">
+        <input type="text" name="name" placeholder="input name here">
+        <button type="submit" class="btn btn-primary">Search Product</button>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
 </body>
-<form action="#" th:action="@{/search}" method="post">
-    <input type="text" name="name" placeholder="input name here">
-    <button type="submit">Search</button>
-</form>
 </html>

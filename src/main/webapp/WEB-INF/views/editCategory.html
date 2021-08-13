@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <title>Edit Category</title>
+</head>
+<body>
+<form method="post"th:object="${category}" novalidate="novalidate">
+    <table border="1" id="products">
+        <tr><th colspan="4">Category Edit Form</th></tr>
+        <tr>
+            <td><input type="text" th:field="*{category}" placeholder="Name" th:value="${category.category}"></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Edit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/home">Back</a>
+</body>
+</html>

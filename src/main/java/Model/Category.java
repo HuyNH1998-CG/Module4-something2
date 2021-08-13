@@ -3,6 +3,9 @@ package Model;
 public class Category {
     private String category;
 
+    public Category() {
+    }
+
     public Category(String category) {
         this.category = category;
     }

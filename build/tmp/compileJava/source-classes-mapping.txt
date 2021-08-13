@@ -2,11 +2,11 @@ ApplicationInitializer.java
  ApplicationInitializer
 ApplicationConfig.java
  ApplicationConfig
-Model/Category.java
- Model.Category
-Service/ProductManager.java
- Service.ProductManager
 Model/Product.java
  Model.Product
+Model/Category.java
+ Model.Category
 Controller/MainController.java
  Controller.MainController
+Service/ProductManager.java
+ Service.ProductManager

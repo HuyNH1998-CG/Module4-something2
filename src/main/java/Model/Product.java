@@ -4,8 +4,34 @@ public class Product {
     private String name;
     private float price;
     private String category;
+    private String desc;
+    private String image;
 
     public Product() {
+    }
+
+    public Product(String name, float price, String category, String desc, String image) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.desc = desc;
+        this.image = image;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Product(String name, float price, String category) {

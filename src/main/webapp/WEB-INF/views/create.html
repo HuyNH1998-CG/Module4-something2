@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Create</title>
+<head th:replace="/layout :: head">
+    <title>Create Product</title>
 </head>
 <body>
 <form method="post" th:action="@{/create}" th:object="${product}" novalidate="novalidate">
-    <table border="1">
+    <table border="1" id="products">
+        <tr><th colspan="4">Product Creation Form</th></tr>
         <tr>
             <td><input type="text" th:field="*{name}" placeholder="Name"></td>
         </tr>
         <tr>
             <td><input type="number" th:field="*{price}" placeholder="Price"></td>
+        </tr>
+        <tr>
+            <td><textarea th:field="*{desc}" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{image}" placeholder="image link"></td>
         </tr>
         <tr>
             <td>

@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <title>Seach</title>
 </head>
 <body>
 <a href="/home">Home</a>
-<table border="1">
+<table border="1" id="products">
     <tr>
         <th>Name</th>
         <th>Price</th>
+        <th>Description</th>
+        <th>Image</th>
         <th>Category</th>
     </tr>
     <tr th:each="row,state : ${product}">
         <td th:text="${row.getName()}"></td>
         <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.desc}"></td>
+        <td><img src="" th:src="${row.image}" alt=""></td>
         <td th:text="${row.getCategory}"></td>
     </tr>
 </table>

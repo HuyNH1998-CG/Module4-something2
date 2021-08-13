@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Create</title>
+<head th:replace="/layout :: head">
+    <title>Edit Product</title>
 </head>
 <body>
 <form method="post"th:object="${product}" novalidate="novalidate">
-    <table border="1">
+    <table border="1" id="products">
+        <tr><th colspan="4">Product Edit Form</th></tr>
         <tr>
             <td><input type="text" th:field="*{name}" placeholder="Name" th:value="${product.name}"></td>
         </tr>
@@ -13,10 +14,16 @@
             <td><input type="number" th:field="*{price}" placeholder="Price" th:value="${product.price}"></td>
         </tr>
         <tr>
+            <td><textarea th:field="*{desc}" cols="30" rows="10" th:value="${product.desc}"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{image}" placeholder="image link" th:value="${product.image}"></td>
+        </tr>
+        <tr>
             <td>
                 <select name="category" th:field="*{category}">
                     <option th:value="${product.category}" th:text="${product.category}" hidden></option>
-                    <option th:each="category : ${category}" th:value="${category.getCategory()}" th:utext="${category.getCategory()}"></option>
+                    <option th:each="category : ${category}"  th:value="${category.getCategory()}" th:utext="${category.getCategory()}"></option>
                 </select>
             </td>
         </tr>
